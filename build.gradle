@@ -19,7 +19,8 @@ repositories {
 }
 
 dependencies {
-	// implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+	implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.0'
+	implementation 'org.postgresql:postgresql'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework:spring-web'
 	implementation 'org.springframework.boot:spring-boot-starter-validation'
