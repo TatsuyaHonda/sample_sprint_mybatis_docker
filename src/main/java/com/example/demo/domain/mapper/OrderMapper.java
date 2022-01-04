@@ -7,6 +7,7 @@ import com.example.demo.domain.model.OrderDetail;
 
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Result;
 import org.apache.ibatis.annotations.Results;
 import org.apache.ibatis.annotations.Select;
@@ -23,7 +24,7 @@ public interface OrderMapper {
 	@Results(id = "Order", value = {
 			@Result(column = "order_no", property = "orderNo"),
 			@Result(column = "order_item", property = "orderItem"),
-			@Result(column = "order_no", property = "orderDetails", many = @Many(select = "selectRef")) })
+			@Result(column = "{orderNo=order_no,orderItem=order_item}", property = "orderDetails", many = @Many(select = "selectRef")) })
 	List<Order> findOneById(int orderNo);
 
 	@Select("""
@@ -33,7 +34,10 @@ public interface OrderMapper {
 				public.sample_ref
 			WHERE
 				order_no = #{orderNo}
+				AND order_detail_comment = #{orderItem}
 			""")
-	List<OrderDetail> selectRef(int orderNo);
+	List<OrderDetail> selectRef(
+			@Param("orderNo") int order_no,
+			@Param("orderItem") String order_item);
 
 }
