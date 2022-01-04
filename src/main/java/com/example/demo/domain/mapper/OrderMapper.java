@@ -37,7 +37,7 @@ public interface OrderMapper {
 				AND order_detail_comment = #{orderItem}
 			""")
 	List<OrderDetail> selectRef(
-			@Param("orderNo") int order_no,
-			@Param("orderItem") String order_item);
+			@Param("orderNo") int orderNo,
+			@Param("orderItem") String orderItem);
 
 }
