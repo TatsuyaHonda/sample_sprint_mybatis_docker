@@ -1,0 +1,34 @@
+version: '3.0'
+
+services:
+  postgres:
+    image: postgres:14-alpine
+    working_dir: /var/app
+    container_name: sample-dev-postgres
+    ports:
+      - ${POSTGRES_PORT}:5432
+    volumes:
+      - ./:/var/app/
+      - ./init:/docker-entrypoint-initdb.d
+    environment:
+      - POSTGRES_USER
+      - POSTGRES_PASSWORD
+      - POSTGRES_DB
+      - POSTGRES_INITDB_ARGS
+    restart: always
+
+  pgweb:
+    image: sosedoff/pgweb:0.11.9
+    container_name: sample-dev-pgweb
+    ports:
+      - ${PGWEB_PORT}:8081
+    depends_on:
+      - postgres
+    environment:
+      - DATABASE_URL=postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}?sslmode=disable
+    restart: always
+
+networks:
+  default:
+    external:
+      name: ${LOCALTEST_NETWORK}
