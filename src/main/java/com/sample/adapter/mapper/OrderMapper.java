@@ -14,16 +14,17 @@ import org.apache.ibatis.annotations.Select;
 @Mapper
 public interface OrderMapper {
 
-	@Select("""
-			SELECT
-				*
-			FROM
-				public.sample
-			""")
-	@Results(id = "Order", value = {
-			@Result(column = "order_no", property = "orderNo"),
-			@Result(column = "order_item", property = "orderItem"),
-			@Result(column = "{orderNo=order_no,orderItem=order_item}", property = "orderDetails", many = @Many(select = "selectRef")) })
+	// @Select("""
+	// SELECT
+	// *
+	// FROM
+	// public.sample
+	// """)
+	// @Results(id = "Order", value = {
+	// @Result(column = "order_no", property = "orderNo"),
+	// @Result(column = "order_item", property = "orderItem"),
+	// @Result(column = "{orderNo=order_no,orderItem=order_item}", property =
+	// "orderDetails", many = @Many(select = "selectRef")) })
 	List<Order> findOneById(int orderNo);
 
 	@Select("""

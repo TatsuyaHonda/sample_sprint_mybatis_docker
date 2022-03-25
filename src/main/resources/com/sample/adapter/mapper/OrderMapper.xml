@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.sample.adapter.mapper.OrderMapper">
+
+	<select id="findOneById" resultMap="orderResult">
+		SELECT
+			sample.order_no,
+			sample.order_item,
+			
+			sample_ref.order_ref_no,
+			sample_ref.order_detail_comment
+		
+		FROM
+			public.sample sample
+			LEFT OUTER JOIN public.sample_ref sample_ref
+				ON sample.order_no = sample_ref.order_no
+		WHERE
+			sample_ref.order_no = #{orderNo}
+  </select>
+
+	<resultMap id="orderResult" type="com.sample.model.Order">
+		<id property="orderNo" column="order_no" />
+		<result property="orderItem" column="order_item" />
+
+		<collection property="orderDetails" ofType="com.sample.model.OrderDetail">
+			<id property="orderRefNo" column="order_ref_no" />
+			<result property="orderDetailComment" column="order_detail_comment" />
+		</collection>
+	</resultMap>
+</mapper>
