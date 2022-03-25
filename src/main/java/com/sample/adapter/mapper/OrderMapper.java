@@ -1,9 +1,9 @@
-package com.example.sample.mapper;
+package com.sample.adapter.mapper;
 
 import java.util.List;
 
-import com.example.sample.model.Order;
-import com.example.sample.model.OrderDetail;
+import com.sample.model.Order;
+import com.sample.model.OrderDetail;
 
 import org.apache.ibatis.annotations.Many;
 import org.apache.ibatis.annotations.Mapper;

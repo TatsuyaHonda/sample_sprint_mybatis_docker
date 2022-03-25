@@ -9,6 +9,10 @@ spring:
     username: postgres
     password: example
 
+logging:
+  level:
+    org.springframework.web.client.RestTemplate: DEBUG
+
 mybatis:
   configuration:
     map-underscore-to-camel-case: true

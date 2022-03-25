@@ -31,7 +31,9 @@ dependencies {
 	implementation 'org.postgresql:postgresql'
 
 	implementation 'com.fasterxml.jackson.datatype:jackson-datatype-jsr310'
+	implementation 'org.openapitools:jackson-databind-nullable:0.1.0'
 	implementation 'javax.xml.bind:jaxb-api'
+	implementation 'org.apache.httpcomponents:httpclient:4.5.13'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
